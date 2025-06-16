@@ -3,11 +3,10 @@ using namespace std;
 
 int main()
 {
-    long long n; cin >> n;
+    vector<vector<int>> nums(5, vector<int>(5));
 
-    for(int i = 0; i < n; i++){
+    int x, y;
+    for(int i = 0; i < nums.size(); i++){ for(int j = 0; j < nums[i].size(); j++){ cin >> nums[i][j]; if(nums[i][j] == 1){ x = i; y = j; } } }
 
-    }
-
-    return 0;
+    cout << abs(x-2) + abs(y-2) << endl;
 }
