@@ -1,0 +1,22 @@
+# Ignore C++ binaries with no extension
+# Matches files without an extension (no dot in name)
+*
+
+# NOTE: no inline comments
+# Don't ignore directories
+!*/
+
+# Don't ignore .gitignore
+!.gitignore
+
+# But allow all files with known extensions
+!**/*.cpp
+!**/*.py
+!**/*.c
+!**/*.h
+!**/*.hpp
+!**/*.txt
+!**/*.md
+!**/*.json
+!**/*.xml
+!**/*.testcases
