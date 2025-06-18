@@ -2,13 +2,9 @@ import torch
 import matplotlib.pyplot as plt
 torch.set_printoptions(linewidth=183)  # Change pytorch linewidth to my laptop terminal width
 
-
 words = open('names.txt', 'r').read().splitlines()
-
 bigrams = torch.zeros((27,27), dtype=torch.int32)
-
 chars = sorted(set([c for w in words for c in w]))
-
 stoi = {c: i+1 for i,c in enumerate(chars)} # character to index mapping
 itos = {i+1: c for i,c in enumerate(chars)} # index to character mapping
 stoi['.'] = 0
@@ -19,30 +15,47 @@ for w in words:
     for c1,c2 in zip(w,w[1:]):
         bigrams[stoi[c1],stoi[c2]] += 1
 
-print(bigrams)
-print("axis=0", bigrams.sum(0,keepdim=True))
-print("axis=1", bigrams.sum(1,keepdim=True))
-print("check eq: ", torch.all(bigrams.sum(0)==bigrams.sum(1))) # all true
+# print(bigrams)
+# print("axis=0", bigrams.sum(0,keepdim=True))
+# print("axis=1", bigrams.sum(1,keepdim=True))
+# print("check eq: ", torch.all(bigrams.sum(0)==bigrams.sum(1))) # all true
 
-plt.imshow(bigrams)
+plt.figure(figsize=(16,16))
+plt.imshow(bigrams, cmap='Blues')
+for i in range(27):
+    for j in range(27):
+        chstr = itos[i] + itos[j]
+        plt.text(j, i, chstr, ha="center", va="bottom", color='gray')
+        plt.text(j, i, str(bigrams[i, j].item()), ha="center", va="top", color='gray')
+plt.axis('off')
 
+# Start sampling
+#p = torch.rand(3, generator=g)
 
+g = torch.Generator().manual_seed(2147483647)
+for i in range(10):
+    out = []
+    ix = 0
+    while True:
+        p = bigrams[ix]
+        p =  p/p.sum()
+        ix = int(torch.multinomial(p, num_samples=1, replacement=True, generator=g).item())
+        if ix == 0:
+            break
+        print(''.join(out))
 
-# 25:39
+g = torch.Generator().manual_seed(2147483647)
+out = []
+ix = 0
+for i in range(10):
+    out.append("")
+    while True:
+        p = bigrams[ix]
+        p =  p/p.sum()
+        ix = int(torch.multinomial(p, num_samples=1, replacement=True, generator=g).item())
+        if ix == 0:
+            break
+        else:
+            out[-1] += itos[ix]
+print(out)
 
-
-#print(a)
-#Argument of the type tuple[str,str] cannot be assigned to parameter "indices" of type...
-
-
-
-# Notes:
-# translation of 2d list comprehension (fors are written in nested loop order)
-#
-# print([char for word in words[:20] for char in word.strip()])
-# 
-# b = []
-# for word in words[:20]:
-#     for char in word.strip():
-#         b.append(char)
-# print(b)
