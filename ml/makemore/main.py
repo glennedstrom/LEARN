@@ -32,18 +32,22 @@ plt.axis('off')
 # Start sampling
 #p = torch.rand(3, generator=g)
 
+#His
 g = torch.Generator().manual_seed(2147483647)
 for i in range(10):
     out = []
     ix = 0
     while True:
-        p = bigrams[ix]
+        p = bigrams[ix].float()
         p =  p/p.sum()
         ix = int(torch.multinomial(p, num_samples=1, replacement=True, generator=g).item())
         if ix == 0:
             break
-        print(''.join(out))
+        out.append(itos[ix])
+    print(''.join(out))
 
+
+#Mine
 g = torch.Generator().manual_seed(2147483647)
 out = []
 ix = 0
@@ -57,5 +61,18 @@ for i in range(10):
             break
         else:
             out[-1] += itos[ix]
-print(out)
+print('\n'.join(out))
+
+
+
+
+
+
+
+
+
+
+
+
+
 
