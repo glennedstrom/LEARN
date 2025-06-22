@@ -16,14 +16,16 @@ class NumberVerifier(nn.Module):
         super(NumberVerifier,self).__init__() # call the inherited constructor manually
         self.conv1 = nn.Conv2d(1, 6, 3)
         self.conv2 = nn.Conv2d(6, 16, 3)
+        self.conv3 = nn.Conv2d(16, 32, 3)
         
-        self.fc1 = nn.Linear(16*5*5, 120) # ((28-3+1)//2-3+1)//2 = 5 => 5x5 image; 16 channels
-        self.fc2 = nn.Linear(120, 84)
-        self.fc3 = nn.Linear(84, 10) # 10 output classes
+        self.fc1 = nn.Linear(32*1*1, 64) # ((28-3+1)//2-3+1)//2 = 5 => 5x5 image; 16 channels
+        self.fc2 = nn.Linear(64, 54)
+        self.fc3 = nn.Linear(54, 10) # 10 output classes
 
     def forward(self, x): # use all layers here and compute prediction
         x = F.max_pool2d( F.relu( self.conv1(x) ), 2)
         x = F.max_pool2d( F.relu( self.conv2(x) ), 2)
+        x = F.max_pool2d( F.relu( self.conv3(x) ), 2)
         #putting x.size(0) instead of 32 lets it auto compute the batch size
         x = x.view(x.size(0), -1) # view it squashed without copying maintaining the batch size of 1
         x = F.relu(self.fc1(x))
@@ -128,48 +130,69 @@ def load_model():
             checkpoint['test_accuracies'])
 
 def analyze_model(model, train_losses, train_accuracies, test_accuracies):
-    """Analyze and visualize the trained model"""
+    """Analyze and visualize the trained model with better layout"""
     
-    # Create subplots
-    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
+    # Create first figure for training metrics
+    fig1, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
     
     # Plot 1: Training Loss
-    ax1.plot(train_losses, 'b-', linewidth=2)
-    ax1.set_title('Training Loss Over Time', fontsize=14, fontweight='bold')
-    ax1.set_xlabel('Batch (x100)')
-    ax1.set_ylabel('Loss')
+    ax1.plot(train_losses, 'b-', linewidth=2, marker='o', markersize=4)
+    ax1.set_title('Training Loss Over Time', fontsize=14, fontweight='bold', pad=20)
+    ax1.set_xlabel('Batch (x100)', fontsize=12)
+    ax1.set_ylabel('Loss', fontsize=12)
     ax1.grid(True, alpha=0.3)
+    ax1.tick_params(labelsize=10)
     
     # Plot 2: Training vs Test Accuracy
     epochs = range(1, len(train_accuracies) + 1)
-    ax2.plot(epochs, train_accuracies, 'g-', label='Training Accuracy', linewidth=2)
-    ax2.plot(epochs, test_accuracies, 'r-', label='Test Accuracy', linewidth=2)
-    ax2.set_title('Training vs Test Accuracy', fontsize=14, fontweight='bold')
-    ax2.set_xlabel('Epoch')
-    ax2.set_ylabel('Accuracy (%)')
-    ax2.legend()
+    ax2.plot(epochs, train_accuracies, 'g-', label='Training Accuracy', linewidth=2, marker='s', markersize=6)
+    ax2.plot(epochs, test_accuracies, 'r-', label='Test Accuracy', linewidth=2, marker='^', markersize=6)
+    ax2.set_title('Training vs Test Accuracy', fontsize=14, fontweight='bold', pad=20)
+    ax2.set_xlabel('Epoch', fontsize=12)
+    ax2.set_ylabel('Accuracy (%)', fontsize=12)
+    ax2.legend(fontsize=11)
     ax2.grid(True, alpha=0.3)
+    ax2.tick_params(labelsize=10)
     
-    # Plot 3: Model Architecture Visualization
+    plt.tight_layout(pad=3.0)
+    plt.show()
+    
+    # Create second figure for model architecture
+    fig2, ax3 = plt.subplots(1, 1, figsize=(12, 8))
+    
     model_params = []
     model_layers = []
     for name, param in model.named_parameters():
         if param.requires_grad:
-            model_layers.append(name)
+            # Clean up layer names for better display
+            clean_name = name.replace('.weight', ' (weights)').replace('.bias', ' (bias)')
+            model_layers.append(clean_name)
             model_params.append(param.numel())
     
-    ax3.barh(model_layers, model_params, color=['skyblue', 'lightcoral', 'lightgreen', 'gold', 'plum', 'orange'])
-    ax3.set_title('Model Parameters by Layer', fontsize=14, fontweight='bold')
-    ax3.set_xlabel('Number of Parameters')
-    ax3.tick_params(axis='y', labelsize=8)
+    colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD']
+    bars = ax3.barh(model_layers, model_params, color=colors[:len(model_layers)])
+    ax3.set_title('Model Parameters by Layer', fontsize=16, fontweight='bold', pad=20)
+    ax3.set_xlabel('Number of Parameters', fontsize=12)
+    ax3.tick_params(axis='y', labelsize=10)
+    ax3.tick_params(axis='x', labelsize=10)
     
-    # Plot 4: Sample Predictions
+    # Add value labels on bars
+    for i, (bar, value) in enumerate(zip(bars, model_params)):
+        ax3.text(value + max(model_params) * 0.01, bar.get_y() + bar.get_height()/2, 
+                f'{value:,}', ha='left', va='center', fontsize=10, fontweight='bold')
+    
+    plt.tight_layout(pad=3.0)
+    plt.show()
+    
+    # Create third figure for sample predictions
+    fig3 = plt.figure(figsize=(16, 10))
+    
     transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize((0.5,), (0.5,))
     ])
     testset = torchvision.datasets.MNIST(root='./data', train=False, download=True, transform=transform)
-    testLoader = DataLoader(testset, batch_size=8, shuffle=True)
+    testLoader = DataLoader(testset, batch_size=12, shuffle=True)
     
     model.eval()
     with torch.no_grad():
@@ -177,35 +200,39 @@ def analyze_model(model, train_losses, train_accuracies, test_accuracies):
         outputs = model(images)
         _, predicted = torch.max(outputs, 1)
     
-    # Show sample predictions
-    ax4.axis('off')
-    ax4.set_title('Sample Predictions', fontsize=14, fontweight='bold')
-    
-    # Create a grid of images
-    for i in range(min(8, len(images))):
-        plt.subplot(2, 8, i + 9)  # Position in the grid
+    # Create a grid of sample predictions
+    for i in range(min(12, len(images))):
+        ax = plt.subplot(3, 4, i + 1)
         img = images[i].squeeze().numpy()
         plt.imshow(img, cmap='gray')
-        plt.title(f'True: {labels[i].item()}\nPred: {predicted[i].item()}', 
-                 fontsize=8, 
-                 color='green' if labels[i].item() == predicted[i].item() else 'red')
+        
+        is_correct = labels[i].item() == predicted[i].item()
+        title_color = 'green' if is_correct else 'red'
+        status = '✓' if is_correct else '✗'
+        
+        plt.title(f'{status} True: {labels[i].item()}, Pred: {predicted[i].item()}', 
+                 fontsize=12, fontweight='bold', color=title_color, pad=10)
         plt.axis('off')
     
-    plt.tight_layout()
+    plt.suptitle('Sample Predictions', fontsize=18, fontweight='bold', y=0.98)
+    plt.tight_layout(rect=[0, 0, 1, 0.95])
     plt.show()
     
     # Print model summary
     total_params = sum(p.numel() for p in model.parameters())
     trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     
-    print(f"\n--- Model Summary ---")
+    print(f"\n{'='*50}")
+    print(f"{'MODEL SUMMARY':^50}")
+    print(f"{'='*50}")
     print(f"Total parameters: {total_params:,}")
     print(f"Trainable parameters: {trainable_params:,}")
     print(f"Final training accuracy: {train_accuracies[-1]:.2f}%")
     print(f"Final test accuracy: {test_accuracies[-1]:.2f}%")
+    print(f"{'='*50}")
 
 def test_single_prediction(model):
-    """Test the model on a single random image"""
+    """Test the model on a single random image with better visualization"""
     transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize((0.5,), (0.5,))
@@ -225,35 +252,48 @@ def test_single_prediction(model):
         predicted_label = int(torch.argmax(output, dim=1).item())
         confidence = probabilities[0][predicted_label].item()
     
-    # Visualize
-    plt.figure(figsize=(12, 4))
+    # Create a better visualization
+    fig, axes = plt.subplots(1, 3, figsize=(16, 5))
     
     # Show image
-    plt.subplot(1, 3, 1)
-    plt.imshow(image.squeeze().numpy(), cmap='gray')
-    plt.title(f'True Label: {true_label}\nPredicted: {predicted_label}\nConfidence: {confidence:.3f}')
-    plt.axis('off')
+    axes[0].imshow(image.squeeze().numpy(), cmap='gray')
+    is_correct = true_label == predicted_label
+    title_color = 'green' if is_correct else 'red'
+    status = '✓ Correct' if is_correct else '✗ Incorrect'
+    
+    axes[0].set_title(f'{status}\nTrue: {true_label} | Predicted: {predicted_label}\nConfidence: {confidence:.1%}', 
+                     fontsize=14, fontweight='bold', color=title_color, pad=15)
+    axes[0].axis('off')
     
     # Show probability distribution
-    plt.subplot(1, 3, 2)
     probs = probabilities[0].numpy()
-    bars = plt.bar(range(10), probs)
-    bars[predicted_label].set_color('red')
-    plt.title('Prediction Probabilities')
-    plt.xlabel('Digit')
-    plt.ylabel('Probability')
+    colors = ['red' if i == predicted_label else 'lightblue' for i in range(10)]
+    bars = axes[1].bar(range(10), probs, color=colors, edgecolor='black', linewidth=1)
+    axes[1].set_title('Prediction Probabilities', fontsize=14, fontweight='bold', pad=15)
+    axes[1].set_xlabel('Digit', fontsize=12)
+    axes[1].set_ylabel('Probability', fontsize=12)
+    axes[1].set_xticks(range(10))
+    axes[1].grid(True, alpha=0.3, axis='y')
+    
+    # Add percentage labels on bars
+    for bar, prob in zip(bars, probs):
+        if prob > 0.01:  # Only show labels for probabilities > 1%
+            axes[1].text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.01, 
+                        f'{prob:.1%}', ha='center', va='bottom', fontsize=10, fontweight='bold')
     
     # Show top 3 predictions
-    plt.subplot(1, 3, 3)
     top3_idx = torch.topk(probabilities[0], 3).indices.numpy()
     top3_probs = torch.topk(probabilities[0], 3).values.numpy()
     
-    plt.barh(range(3), top3_probs)
-    plt.yticks(range(3), [f'Digit {idx}' for idx in top3_idx])
-    plt.title('Top 3 Predictions')
-    plt.xlabel('Probability')
+    colors_top3 = ['gold', 'silver', '#CD7F32']  # Gold, silver, bronze
+    bars = axes[2].barh(range(3), top3_probs, color=colors_top3, edgecolor='black', linewidth=1)
+    axes[2].set_yticks(range(3))
+    axes[2].set_yticklabels([f'#{i+1}: Digit {idx} ({prob:.1%})' for i, (idx, prob) in enumerate(zip(top3_idx, top3_probs))])
+    axes[2].set_title('Top 3 Predictions', fontsize=14, fontweight='bold', pad=15)
+    axes[2].set_xlabel('Probability', fontsize=12)
+    axes[2].grid(True, alpha=0.3, axis='x')
     
-    plt.tight_layout()
+    plt.tight_layout(pad=3.0)
     plt.show()
 
 if __name__ == "__main__":
