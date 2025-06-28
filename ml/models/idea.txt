@@ -1,0 +1,2 @@
+Try model distillation where you have one really big model that you train really well, then you take a smaller model
+and train it to predict the same things that the parent model predicts on the same dataset instead of the hard classes "dog" or "cat"
