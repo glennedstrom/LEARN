@@ -14,23 +14,24 @@ import os
 class NumberVerifier(nn.Module):
     def __init__(self): # define all layers in here
         super(NumberVerifier,self).__init__() # call the inherited constructor manually
-        self.conv1 = nn.Conv2d(1, 6, 3)
-        self.conv2 = nn.Conv2d(6, 16, 3)
-        self.conv3 = nn.Conv2d(16, 32, 3)
+        self.conv1 = nn.Conv2d(1, 2, 3)
+        self.conv2 = nn.Conv2d(2, 1, 3)
+        # self.conv3 = nn.Conv2d(6, 12, 3)
         
-        self.fc1 = nn.Linear(32*1*1, 64) # ((28-3+1)//2-3+1)//2 = 5 => 5x5 image; 16 channels
-        self.fc2 = nn.Linear(64, 54)
-        self.fc3 = nn.Linear(54, 10) # 10 output classes
+        self.fc1 = nn.Linear(1*5*5, 20) # ((28-3+1)//2-3+1)//2 = 5 => 5x5 image; 16 channels
+        self.fc2 = nn.Linear(20, 10)
+        #self.fc3 = nn.Linear(20, 10) # 10 output classes
 
     def forward(self, x): # use all layers here and compute prediction
         x = F.max_pool2d( F.relu( self.conv1(x) ), 2)
         x = F.max_pool2d( F.relu( self.conv2(x) ), 2)
-        x = F.max_pool2d( F.relu( self.conv3(x) ), 2)
+        # x = F.max_pool2d( F.relu( self.conv3(x) ), 2)
         #putting x.size(0) instead of 32 lets it auto compute the batch size
         x = x.view(x.size(0), -1) # view it squashed without copying maintaining the batch size of 1
         x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        x = self.fc3(x)
+        #x = F.relu(self.fc2(x))
+        #x = self.fc3(x)
+        x = self.fc2(x) # end with two layers
 
         return x
     
@@ -56,7 +57,7 @@ def train_model():
     train_accuracies = []
     test_accuracies = []
     
-    epochs = 5
+    epochs = 3
     print(f"Training model for {epochs} epochs...")
     
     for epoch in range(epochs):
