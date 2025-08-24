@@ -2,15 +2,9 @@
 #include <cmath>
 using namespace std;
 
-pair<long long,long long> quad(long long a, long long b, long long c){
-    pair<long long,long long> out;
-    /*out.first = (-b + sqrt(b*b-4*a*c))/(2*a);*/
-    /*out.second = (-b - sqrt(b*b-4*a*c))/(2*a);*/
-    out.first = ((long double)(-b)/(2*a) + b*sqrt((long double)1/(4*a*a)-(long double)c/(a*b*b)));
-    out.second = ((long double)(-b)/(2*a) - b*sqrt((long double)1/(4*a*a)-(long double)c/(a*b*b)));
-    //out.second = ((long double)(-b)/(2*a) - sqrt((long double)b*b/(4*a*a)-(long double)c/a));
+long double quad(long double a, long double b, long double c){
+    return (-b + 2*sqrtl((b*b/4-a*c)))/(2*a);
 
-    return out;
 }
 
 int main()
@@ -22,19 +16,16 @@ int main()
     long long testcases; cin >> testcases;
 
     for(int testcase = 0; testcase < testcases; testcase++){
-        long long n,c; cin >> n >> c;
+        long double n,c; cin >> n >> c;
 
-        long long temp;
-        long long pssum = 0; for(long long i = 0; i < n; i++){cin >> temp; pssum += temp;}
+        vector<long double> nums(n);
+        long double pssum = 0; for(long long i = 0; i < n; i++){cin >> nums[i]; pssum += nums[i];}
 
-        long long a = 4*n, b = 4*pssum, d = -c;
+        long double a = 4*n, b = 4*pssum, d = -c;
 
-        //cout << a << " " << b << " " << d << endl;
+        long double p = quad(a,b,d);
 
-        auto[p,m] = quad(a,b,d);
-        //cout << p << ", " << m << endl;
-
-        cout << max(p,m) << endl;
+        cout << (long long)p << endl;
 
     }
 

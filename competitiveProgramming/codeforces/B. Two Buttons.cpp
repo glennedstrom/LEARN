@@ -1,32 +1,39 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//dijkstra moving
+
 int main(){
     int n,m; cin >> n >> m;
 
-    // priority_queue<pair<int,int>,
+    //priority_queue<pair<int,int>,
     //     std::vector<std::pair<int,int>>,
     //     std::greater<std::pair<int,int>>
-    // > pq; // button_presses, value; do fewest first
-    queue<int> q;
-    q.push(n);
+    //> pq; // button_presses, value; do fewest first
+    stack<int> s;
+    s.push(n);
     unordered_map<int,int> best;
+    int depth = 1;
 
-    while(!q.empty()){
+    while(!s.empty()){
         //auto& [b_press, val] = q.top();
-        int val = q.front();
+        int val = s.top();
         int b_press = best[val];
-        q.pop();
+        s.pop();
+        depth--;
         //cout << val << ", " << b_press << endl;
         if(val == m){cout << b_press << endl; break;}
 
         if(best.find(val-1) == best.end()){
             best[val-1] = b_press+1; // no do edges instead
-            q.push(val-1);
+            s.push(val-1);
+            depth++;
         }
+        if(val > m){continue;} // skip *2 if you are too high
         if(best.find(val*2) == best.end()){
             best[val*2] = b_press+1; // no do edges instead
-            q.push(val*2);
+            s.push(val*2);
+            depth++;
         }
 
     }
@@ -34,8 +41,28 @@ int main(){
 }
 
 
-
-
+// if I can prove the problem is only -1 -1 -1 -1 *2 *2 *2 order then it'll be a simpler problem because then your options are either
+//
+//
+// 5 -> 4 -> 8 -> 7 -> 14
+//
+// if you can get to 14 faster or equal the normal way it is good.
+// 5 -> 4 ->
+// 5 -> 10 -> 
+//
+// no work...
+//
+//
+//
+// NEXT THEORY:
+//
+// only go down until it's divisible by the number then up?
+// NO
+//
+// if -1 *2 -1 -1 ... is slow, then is this always faster? -1 -1 *2 than any future ones like -1 -1 *2?
+// 8 -> 
+// 7 14 13 12 11 10
+// 8 7 6 12
 
 
 
