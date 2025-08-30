@@ -29,6 +29,7 @@ void demonstrateSequentialContainers() {
     std::vector<int> vec2(5);                       // Size constructor
     std::vector<int> vec3(5, 42);                   // Fill constructor {42, 42, 42, 42, 42}
     std::vector<int> vec4{1, 2, 3, 4, 5};          // Initializer list
+    std::vector<int> vec8 = {1, 2, 3, 4, 5};          // Initializer list
     std::vector<int> vec5(vec4.begin(), vec4.end()); // Range constructor
     std::vector<int> vec6(vec4);                    // Copy constructor
     std::vector<int> vec7(std::move(vec5));         // Move constructor
