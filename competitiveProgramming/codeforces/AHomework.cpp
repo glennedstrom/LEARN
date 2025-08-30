@@ -1,0 +1,35 @@
+#define _USE_MATH_DEFINES
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef vector<int> vi;
+typedef vector<ll> vll;
+typedef pair<int, int> ii;
+typedef vector<ii> vii;
+#define YES cout << "YES" << endl
+#define NO cout << "NO" << endl
+// EPS for doubles; do 1e-6 for floats
+#define EPS 1e-9
+#define INF 1e9
+
+void solve() {
+    int n; cin >> n;
+    string a; cin >> a;
+    deque<char> da(a.begin(),a.end());
+    int m; cin >> m;
+    string b; cin >> b;
+    string order; cin >> order;
+
+    for(int i = 0; i < order.size(); i++){
+        if(order[i] == 'V'){
+            da.push_front(b[i]);
+        }
+        else{
+            da.push_back(b[i]);
+        }
+    }
+    for(auto& i : da){cout << i;}
+    cout << endl;
+}
+
+int main(){int t;cin>>t;while(t--){solve();}ios_base::sync_with_stdio(false);cin.tie(NULL);}//{solve();ios_base::sync_with_stdio(false);cin.tie(NULL);}
