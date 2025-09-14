@@ -17,58 +17,35 @@ void solve() {
 
     vector<int> nums(n); for(int i=0;i<n;i++){cin >> nums[i];}
 
-    bool prevgym = false;
-    bool prevcontest = false;
-
-    int count = 0;
-
-    for(int i = 0; i < n; i++){
-        switch (nums[i]) {
-            case 0:
-                prevgym = false;
-                prevcontest = false;
-            break;
-
-            case 1:
-                prevgym = false;
-                prevcontest = !prevcontest;
-            break;
-
-            case 2:
-                prevgym = !prevgym;
-                prevcontest = false;
-            break;
-
-            case 3: // invert because if you did it yesterday, don't today
-                if(!prevgym && !prevcontest && i < n-1){ // counted the previous state
-                    //look forward and do the opposite of that.
-                    int next = i+1;
-                    int count = 0;
-                    while(next < n && nums[next] == 3){ next++; count++; }
-                    if(next == n){prevgym = !prevgym; break;} //if next == n; doesn't matter.
-
-                    if(nums[next] == 1){
-                        if(count % 2 == 0){ prevgym = 1; } // try to save it for this one
-                        else{ prevcontest = 1; } // save it for the other one or it's hopeless
-                    }
-                    else if(nums[next] == 2){
-                        if(count % 2 == 1){ prevgym = 1; } // try to save it for this one
-                        else{ prevcontest = 1; }       // save it for the other one or it's hopeless
-                    }
-                    else prevgym = !prevgym;  // doesn't matter which
-                }
-                else{
-                    prevgym = !prevgym;
-                    prevcontest = !prevcontest;
-                }
-            break;
+    vector dp(n, vector<int>(3,1e9)); // 0 is rest, 1 is contest, 2 is gym or whatever the number order is
+    // base cases
+    // dp[0][1] = (nums[0] == 1 || nums[0] == 3) ? 0 : 1e9; // 0 or inf rest days (could prob put 1)
+    // dp[0][2] = (nums[0] == 2 || nums[0] == 3) ? 0 : 1e9; // 0 or inf rest days
+    dp[0][0] = 1; // always 1 rest day more than prev layer (0)
+    dp[0][1] = !(nums[0] == 1 || nums[0] == 3); // if 1, put 0 rest days else (inf or current min)
+    dp[0][2] = !(nums[0] == 2 || nums[0] == 3); // if 2, put 0 rest days
+    for(int i = 1; i < n; i++){
+        dp[i][0] = 1 + min(min(dp[i-1][0], dp[i-1][1]), dp[i-1][2]); // min layer
         
-        }
-        if(!prevgym && !prevcontest){
-            count++; // rest day
-        }
+        if(nums[i] == 1){ dp[i][1] = min(dp[i-1][0], dp[i-1][2]); }
+        if(nums[i] == 2){ dp[i][2] = min(dp[i-1][0], dp[i-1][1]); }
+        if(nums[i] == 3){ dp[i][1] = min(dp[i-1][0], dp[i-1][2]); dp[i][2] = min(dp[i-1][0], dp[i-1][1]); }
     }
-    cout << count << endl;
+
+    int o = 1e9;
+    int idx = 0;
+    for(auto& i : dp[n-1]){ o = min(o,i); } // min of last row is the n - answer
+
+    // for(auto& v : dp){
+    //     cout << nums[idx++] << " : ";
+    //     for(auto& i : v){
+    //         cout << i << ' ';
+    //     }
+    //     cout << endl;
+    // }
+    cout << o << endl;
+
+    return;
 }
 
 int main(){solve();}

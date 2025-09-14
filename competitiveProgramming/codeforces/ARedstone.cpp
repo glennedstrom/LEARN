@@ -23,8 +23,23 @@ void solve() {
     nums.resize(n);
     for(int i = 0; i < n; i++)cin >> nums[i];
     sort(nums.rbegin(),nums.rend());
+    bool works = false;
+    for(int i = 1; i < nums.size(); i++){
+        if(nums[i] == nums[i-1]){
+            works = true;
+            break;
+        }
+    }
+    if(works){
+        YES;
+        return;
+    }
+    NO;
+    return;
 
     for(auto& g : nums){ cout << g << " "; } cout << endl;
+    //no matter what you put in the middle, it only works if the first and the last are the same.
+    //basically all you need is a duplicate detector
 
 
     for(int i = 0; i < n; i++){ // biggest to smallest.
