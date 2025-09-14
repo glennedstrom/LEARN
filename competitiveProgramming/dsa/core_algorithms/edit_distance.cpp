@@ -20,13 +20,15 @@ void solve() {
             }
         }
     }
-    for (auto &v : dp) {
-        for (auto &i : v) {
-            cout << i << " ";
-        }
-        cout << endl;
-    }
-    cout << "Edit Distance: " << dp[a.size()][b.size()] << endl;
+    // for (auto &v : dp) {
+    //     for (auto &i : v) {
+    //         cout << i << " ";
+    //     }
+    //     cout << endl;
+    // }
+    // cout << "Edit Distance: " << dp[a.size()][b.size()] << endl;
+    cout << dp[a.size()][b.size()] << endl;
+    return;
 
     // Backtrack to re-build the edits
 
