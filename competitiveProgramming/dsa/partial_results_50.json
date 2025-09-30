@@ -1,0 +1,352 @@
+[
+  {
+    "username": "Admiral",
+    "checked_as": "admiral",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Alchemist",
+    "checked_as": "alchemist",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Architect",
+    "checked_as": "architect",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Armorer",
+    "checked_as": "armorer",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Artificer",
+    "checked_as": "artificer",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Artisan",
+    "checked_as": "artisan",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Bard",
+    "checked_as": "bard",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Blacksmith",
+    "checked_as": "blacksmith",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Bowyer",
+    "checked_as": "bowyer",
+    "available": null,
+    "status": "HTTP Error 400",
+    "error": "HTTP 400"
+  },
+  {
+    "username": "Captain",
+    "checked_as": "captain",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Carpenter",
+    "checked_as": "carpenter",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Chancellor",
+    "checked_as": "chancellor",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Chronicler",
+    "checked_as": "chronicler",
+    "available": null,
+    "status": "HTTP Error 400",
+    "error": "HTTP 400"
+  },
+  {
+    "username": "Colonel",
+    "checked_as": "colonel",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Commander",
+    "checked_as": "commander",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Conjurer",
+    "checked_as": "conjurer",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Craftsman",
+    "checked_as": "craftsman",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Curator",
+    "checked_as": "curator",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Elementalist",
+    "checked_as": "elementalist",
+    "available": null,
+    "status": "HTTP Error 400",
+    "error": "HTTP 400"
+  },
+  {
+    "username": "Enchanter",
+    "checked_as": "enchanter",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Engineer",
+    "checked_as": "engineer",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Executor",
+    "checked_as": "executor",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Explorer",
+    "checked_as": "explorer",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Fletcher",
+    "checked_as": "fletcher",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Forgemaster",
+    "checked_as": "forgemaster",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Guardian",
+    "checked_as": "guardian",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Historian",
+    "checked_as": "historian",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Inventor",
+    "checked_as": "inventor",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Librarian",
+    "checked_as": "librarian",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Lieutenant",
+    "checked_as": "lieutenant",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Magistrate",
+    "checked_as": "magistrate",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Marshal",
+    "checked_as": "marshal",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Mason",
+    "checked_as": "mason",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Minstrel",
+    "checked_as": "minstrel",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Mystic",
+    "checked_as": "mystic",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Narrator",
+    "checked_as": "narrator",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Navigator",
+    "checked_as": "navigator",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Necromancer",
+    "checked_as": "necromancer",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Nomad",
+    "checked_as": "nomad",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Operative",
+    "checked_as": "operative",
+    "available": null,
+    "status": "HTTP Error 400",
+    "error": "HTTP 400"
+  },
+  {
+    "username": "Oracle",
+    "checked_as": "oracle",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Painter",
+    "checked_as": "painter",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Philosopher",
+    "checked_as": "philosopher",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Pilgrim",
+    "checked_as": "pilgrim",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Prophet",
+    "checked_as": "prophet",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Regent",
+    "checked_as": "regent",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Sage",
+    "checked_as": "sage",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Scholar",
+    "checked_as": "scholar",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Scribe",
+    "checked_as": "scribe",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  },
+  {
+    "username": "Sculptor",
+    "checked_as": "sculptor",
+    "available": false,
+    "status": "Found (Taken)",
+    "error": null
+  }
+]

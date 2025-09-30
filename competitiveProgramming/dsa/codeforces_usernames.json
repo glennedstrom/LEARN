@@ -1,0 +1,286 @@
+{
+  "metadata": {
+    "timestamp": "2025-09-21T23:37:01.271950",
+    "total_checked": 36,
+    "available": 0,
+    "unavailable": 20,
+    "errors": 16
+  },
+  "results": [
+    {
+      "username": "Analyzer",
+      "checked_as": "analyzer",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Annihilator",
+      "checked_as": "annihilator",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Catalyzer",
+      "checked_as": "catalyzer",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Computerizer",
+      "checked_as": "computerizer",
+      "available": null,
+      "status": "HTTP Error 400",
+      "error": "HTTP 400"
+    },
+    {
+      "username": "Crystallizer",
+      "checked_as": "crystallizer",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Decimator",
+      "checked_as": "decimator",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Equalizer",
+      "checked_as": "equalizer",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Fertilizer",
+      "checked_as": "fertilizer",
+      "available": null,
+      "status": "HTTP Error 400",
+      "error": "HTTP 400"
+    },
+    {
+      "username": "Finalizer",
+      "checked_as": "finalizer",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Galvanizer",
+      "checked_as": "galvanizer",
+      "available": null,
+      "status": "HTTP Error 400",
+      "error": "HTTP 400"
+    },
+    {
+      "username": "Harmonizer",
+      "checked_as": "harmonizer",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Hypnotizer",
+      "checked_as": "hypnotizer",
+      "available": null,
+      "status": "HTTP Error 400",
+      "error": "HTTP 400"
+    },
+    {
+      "username": "Jeopardizer",
+      "checked_as": "jeopardizer",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Materializer",
+      "checked_as": "materializer",
+      "available": null,
+      "status": "HTTP Error 400",
+      "error": "HTTP 400"
+    },
+    {
+      "username": "Maximizer",
+      "checked_as": "maximizer",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Memorizer",
+      "checked_as": "memorizer",
+      "available": null,
+      "status": "HTTP Error 400",
+      "error": "HTTP 400"
+    },
+    {
+      "username": "Mesmerizer",
+      "checked_as": "mesmerizer",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Minimizer",
+      "checked_as": "minimizer",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Modernizer",
+      "checked_as": "modernizer",
+      "available": null,
+      "status": "HTTP Error 400",
+      "error": "HTTP 400"
+    },
+    {
+      "username": "Neutralizer",
+      "checked_as": "neutralizer",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Obliterator",
+      "checked_as": "obliterator",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Optimizer",
+      "checked_as": "optimizer",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Organizer",
+      "checked_as": "organizer",
+      "available": null,
+      "status": "HTTP Error 400",
+      "error": "HTTP 400"
+    },
+    {
+      "username": "Paralyzer",
+      "checked_as": "paralyzer",
+      "available": null,
+      "status": "HTTP Error 400",
+      "error": "HTTP 400"
+    },
+    {
+      "username": "Pulverizer",
+      "checked_as": "pulverizer",
+      "available": null,
+      "status": "HTTP Error 400",
+      "error": "HTTP 400"
+    },
+    {
+      "username": "Randomizer",
+      "checked_as": "randomizer",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Stabilizer",
+      "checked_as": "stabilizer",
+      "available": null,
+      "status": "HTTP Error 400",
+      "error": "HTTP 400"
+    },
+    {
+      "username": "Sterilizer",
+      "checked_as": "sterilizer",
+      "available": null,
+      "status": "HTTP Error 400",
+      "error": "HTTP 400"
+    },
+    {
+      "username": "Summarizer",
+      "checked_as": "summarizer",
+      "available": null,
+      "status": "HTTP Error 400",
+      "error": "HTTP 400"
+    },
+    {
+      "username": "Synchronizer",
+      "checked_as": "synchronizer",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Synthesizer",
+      "checked_as": "synthesizer",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Systemizer",
+      "checked_as": "systemizer",
+      "available": null,
+      "status": "HTTP Error 400",
+      "error": "HTTP 400"
+    },
+    {
+      "username": "Terrorizer",
+      "checked_as": "terrorizer",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Theorizer",
+      "checked_as": "theorizer",
+      "available": false,
+      "status": "Found (Taken)",
+      "error": null
+    },
+    {
+      "username": "Vaporizer",
+      "checked_as": "vaporizer",
+      "available": null,
+      "status": "HTTP Error 400",
+      "error": "HTTP 400"
+    },
+    {
+      "username": "Vitalizer",
+      "checked_as": "vitalizer",
+      "available": null,
+      "status": "HTTP Error 400",
+      "error": "HTTP 400"
+    }
+  ],
+  "available_usernames": [],
+  "unavailable_usernames": [
+    "Analyzer",
+    "Annihilator",
+    "Catalyzer",
+    "Crystallizer",
+    "Decimator",
+    "Equalizer",
+    "Finalizer",
+    "Harmonizer",
+    "Jeopardizer",
+    "Maximizer",
+    "Mesmerizer",
+    "Minimizer",
+    "Neutralizer",
+    "Obliterator",
+    "Optimizer",
+    "Randomizer",
+    "Synchronizer",
+    "Synthesizer",
+    "Terrorizer",
+    "Theorizer"
+  ]
+}
